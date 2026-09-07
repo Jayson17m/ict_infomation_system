@@ -4,6 +4,7 @@ const landing = document.getElementById("landing");
 const dashboard = document.getElementById("dashboard");
 const navLinks = document.querySelectorAll(".nav-link");
 const panels = document.querySelectorAll(".panel");
+const processRoute = document.getElementById("processRoute");
 
 const processSteps = [
   "Step 1: Passenger taps Octopus card on the reader.",
@@ -11,6 +12,14 @@ const processSteps = [
   "Step 3: System deducts the fare amount and updates the card balance.",
   "Step 4: Screen shows updated balance, speaker chimes \"Doo\", and gate opens.",
   "Step 5: Transaction details are saved and sent to the central station server."
+];
+
+const routeStations = [
+  "Tap",
+  "Read",
+  "Deduct",
+  "Open",
+  "Sync"
 ];
 
 const stepText = document.getElementById("processStepText");
@@ -58,18 +67,32 @@ function showPanel(targetId) {
   });
 }
 
+function renderRoute() {
+  processRoute.innerHTML = routeStations
+    .map((station, index) => `<li class="process-station" data-step="${index}">${station}</li>`)
+    .join("");
+}
+
 function renderProcessStep() {
   stepText.textContent = processSteps[currentStep];
   stepIndicator.textContent = `${currentStep + 1} / ${processSteps.length}`;
   backStep.disabled = currentStep === 0;
   nextStep.disabled = currentStep === processSteps.length - 1;
+
+  processRoute.querySelectorAll(".process-station").forEach((stationNode) => {
+    const index = Number(stationNode.dataset.step);
+    stationNode.classList.toggle("completed", index < currentStep);
+    stationNode.classList.toggle("active", index === currentStep);
+  });
 }
 
 readerButton.addEventListener("click", () => {
   playDooChime();
 
+  readerButton.classList.remove("tapped");
   flashMessage.classList.remove("flash-on");
-  void flashMessage.offsetWidth;
+  void readerButton.offsetWidth;
+  readerButton.classList.add("tapped");
   flashMessage.classList.add("flash-on");
 
   if (!hasEntered) {
@@ -79,7 +102,7 @@ readerButton.addEventListener("click", () => {
       dashboard.classList.remove("hidden");
       dashboard.classList.add("fade-in");
       showPanel("purpose");
-    }, 900);
+    }, 1200);
   }
 });
 
@@ -103,4 +126,5 @@ nextStep.addEventListener("click", () => {
   }
 });
 
+renderRoute();
 renderProcessStep();

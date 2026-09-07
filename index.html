@@ -8,18 +8,33 @@
   </head>
   <body>
     <main class="app">
-      <section id="landing" class="landing">
+      <section id="landing" class="landing glass-card">
+        <p class="kicker">Hong Kong Transit Dashboard</p>
         <h1>Hong Kong Octopus Gate System</h1>
-        <p>Tap the reader to start a trip and see how an information system works.</p>
+        <p class="landing-copy">Tap the Octopus card to enter an immersive MTR operations dashboard.</p>
+
         <button id="readerButton" class="reader-button" aria-label="Tap Octopus Reader">
-          <span class="reader-title">OCTOPUS READER</span>
-          <span class="reader-ring"></span>
-          <span id="flashMessage" class="flash-message">Deducted $4.50 | Balance $125.00</span>
+          <span class="octopus-card" aria-hidden="true">
+            <span class="octopus-brand">OCTOPUS</span>
+            <span class="octopus-wave"></span>
+          </span>
+          <span class="reader-shell" aria-hidden="true">
+            <span class="reader-plate">
+              <span class="led-ring"></span>
+              <span class="contactless-icon"></span>
+            </span>
+          </span>
+          <span id="flashMessage" class="flash-message" aria-live="polite">
+            <span class="display-text">Deducted: $4.50 | Balance: $125.00</span>
+            <span class="wave-ripple wave-ripple-1"></span>
+            <span class="wave-ripple wave-ripple-2"></span>
+            <span class="wave-ripple wave-ripple-3"></span>
+          </span>
         </button>
       </section>
 
       <section id="dashboard" class="dashboard hidden">
-        <nav class="navbar">
+        <nav class="navbar glass-card">
           <button class="nav-link active" data-target="purpose">Purpose</button>
           <button class="nav-link" data-target="data">Data</button>
           <button class="nav-link" data-target="technology">Technology</button>
@@ -29,18 +44,25 @@
 
         <div class="panel-wrap">
           <section id="purpose" class="panel active">
-            <h2>Purpose</h2>
+            <div class="section-head">
+              <h2>Purpose</h2>
+              <div class="stat-badges">
+                <span class="badge">Fast Throughput</span>
+                <span class="badge">Cashless Transit</span>
+                <span class="badge">Automated Records</span>
+              </div>
+            </div>
             <p>Enable fast, automated, cashless fare collection to reduce queues and improve efficiency.</p>
             <div class="compare-grid">
-              <article class="card">
+              <article class="card gradient-border">
                 <h3>Manual Cash Payment</h3>
                 <ul>
-                  <li>Queue to buy/prepare exact fare</li>
+                  <li>Queue to buy or prepare exact fare</li>
                   <li>Slower passenger flow at gates</li>
                   <li>More manual handling by staff</li>
                 </ul>
               </article>
-              <article class="card">
+              <article class="card gradient-border accent-teal">
                 <h3>Automated Octopus System</h3>
                 <ul>
                   <li>Quick tap-and-go experience</li>
@@ -55,7 +77,10 @@
             <h2>Data</h2>
             <p>Each tap produces key transaction information used by the system.</p>
             <article class="card receipt">
-              <h3>Tap Receipt</h3>
+              <div class="receipt-title-wrap">
+                <h3>Tap Receipt</h3>
+                <span class="receipt-status">LIVE SYNC</span>
+              </div>
               <dl>
                 <dt>Card ID</dt><dd>OCT-7845-29</dd>
                 <dt>Entry Station</dt><dd>Central</dd>
@@ -83,6 +108,7 @@
             <p>Follow the payment process step by step.</p>
             <article class="card process-card">
               <p id="processStepText" class="step-text"></p>
+              <ul id="processRoute" class="process-route" aria-label="Transit process map"></ul>
               <div class="process-controls">
                 <button id="backStep">Back</button>
                 <span id="stepIndicator"></span>
@@ -94,21 +120,31 @@
           <section id="personnel" class="panel">
             <h2>Personnel</h2>
             <p>Different people use, build, and maintain the full system.</p>
-            <div class="compare-grid">
-              <article class="card">
-                <h3>System Users</h3>
-                <ul>
-                  <li>Passengers</li>
-                  <li>Station Staff</li>
-                </ul>
+            <div class="personnel-grid">
+              <article class="card personnel-card">
+                <span class="avatar">🧍</span>
+                <h3>Passengers</h3>
+                <span class="role-badge">System User</span>
               </article>
-              <article class="card">
-                <h3>IT Staff</h3>
-                <ul>
-                  <li>Systems Analyst</li>
-                  <li>Programmer</li>
-                  <li>Technical Support Staff</li>
-                </ul>
+              <article class="card personnel-card">
+                <span class="avatar">🛎️</span>
+                <h3>Station Staff</h3>
+                <span class="role-badge">System User</span>
+              </article>
+              <article class="card personnel-card">
+                <span class="avatar">🧠</span>
+                <h3>Systems Analyst</h3>
+                <span class="role-badge">IT Staff</span>
+              </article>
+              <article class="card personnel-card">
+                <span class="avatar">💻</span>
+                <h3>Programmer</h3>
+                <span class="role-badge">IT Staff</span>
+              </article>
+              <article class="card personnel-card">
+                <span class="avatar">🛠️</span>
+                <h3>Technical Support Staff</h3>
+                <span class="role-badge">IT Staff</span>
               </article>
             </div>
           </section>
