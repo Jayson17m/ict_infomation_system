@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Octopus Information System Components</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section id="landing" class="landing">
+        <h1>Hong Kong Octopus Gate System</h1>
+        <p>Tap the reader to start a trip and see how an information system works.</p>
+        <button id="readerButton" class="reader-button" aria-label="Tap Octopus Reader">
+          <span class="reader-title">OCTOPUS READER</span>
+          <span class="reader-ring"></span>
+          <span id="flashMessage" class="flash-message">Deducted $4.50 | Balance $125.00</span>
+        </button>
+      </section>
+
+      <section id="dashboard" class="dashboard hidden">
+        <nav class="navbar">
+          <button class="nav-link active" data-target="purpose">Purpose</button>
+          <button class="nav-link" data-target="data">Data</button>
+          <button class="nav-link" data-target="technology">Technology</button>
+          <button class="nav-link" data-target="process">Process</button>
+          <button class="nav-link" data-target="personnel">Personnel</button>
+        </nav>
+
+        <div class="panel-wrap">
+          <section id="purpose" class="panel active">
+            <h2>Purpose</h2>
+            <p>Enable fast, automated, cashless fare collection to reduce queues and improve efficiency.</p>
+            <div class="compare-grid">
+              <article class="card">
+                <h3>Manual Cash Payment</h3>
+                <ul>
+                  <li>Queue to buy/prepare exact fare</li>
+                  <li>Slower passenger flow at gates</li>
+                  <li>More manual handling by staff</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Automated Octopus System</h3>
+                <ul>
+                  <li>Quick tap-and-go experience</li>
+                  <li>Fast passenger movement</li>
+                  <li>Automatic fare deduction and records</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="data" class="panel">
+            <h2>Data</h2>
+            <p>Each tap produces key transaction information used by the system.</p>
+            <article class="card receipt">
+              <h3>Tap Receipt</h3>
+              <dl>
+                <dt>Card ID</dt><dd>OCT-7845-29</dd>
+                <dt>Entry Station</dt><dd>Central</dd>
+                <dt>Exit Station</dt><dd>Admiralty</dd>
+                <dt>Transaction Time</dt><dd>08:42 AM</dd>
+                <dt>Fare Amount</dt><dd>$4.50</dd>
+                <dt>Remaining Balance</dt><dd>$125.00</dd>
+              </dl>
+            </article>
+          </section>
+
+          <section id="technology" class="panel">
+            <h2>Technology</h2>
+            <p>Simple equipment and software work together at every gate.</p>
+            <div class="tech-grid">
+              <article class="card"><h3>📶 Card Reader</h3><p>Reads the card when passengers tap.</p></article>
+              <article class="card"><h3>🖥️ Gate Screen & Speaker</h3><p>Displays balance and plays the "Doo" chime.</p></article>
+              <article class="card"><h3>🚧 Gate Barriers</h3><p>Open for valid payment and control access flow.</p></article>
+              <article class="card"><h3>⚙️ Fare Software</h3><p>Calculates fare and updates transaction records.</p></article>
+            </div>
+          </section>
+
+          <section id="process" class="panel">
+            <h2>Process</h2>
+            <p>Follow the payment process step by step.</p>
+            <article class="card process-card">
+              <p id="processStepText" class="step-text"></p>
+              <div class="process-controls">
+                <button id="backStep">Back</button>
+                <span id="stepIndicator"></span>
+                <button id="nextStep">Next</button>
+              </div>
+            </article>
+          </section>
+
+          <section id="personnel" class="panel">
+            <h2>Personnel</h2>
+            <p>Different people use, build, and maintain the full system.</p>
+            <div class="compare-grid">
+              <article class="card">
+                <h3>System Users</h3>
+                <ul>
+                  <li>Passengers</li>
+                  <li>Station Staff</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>IT Staff</h3>
+                <ul>
+                  <li>Systems Analyst</li>
+                  <li>Programmer</li>
+                  <li>Technical Support Staff</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
