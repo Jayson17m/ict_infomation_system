@@ -1,5 +1,35 @@
 const { useEffect, useMemo, useRef, useState } = React;
-const { AnimatePresence, LayoutGroup, motion } = window["framer-motion"];
+const framerMotionLib = window.framerMotion || window["framer-motion"] || window.Motion;
+const passthroughComponent = ({ children }) => <>{children}</>;
+const motionFallback = new Proxy(
+  {},
+  {
+    get: (_, elementName) =>
+      React.forwardRef(({ children, ...props }, ref) => {
+        const {
+          initial,
+          animate,
+          exit,
+          variants,
+          transition,
+          whileHover,
+          whileTap,
+          whileInView,
+          layout,
+          layoutId,
+          drag,
+          dragConstraints,
+          dragElastic,
+          dragMomentum,
+          ...domProps
+        } = props;
+        return React.createElement(elementName, { ...domProps, ref }, children);
+      })
+  }
+);
+const AnimatePresence = framerMotionLib?.AnimatePresence || passthroughComponent;
+const LayoutGroup = framerMotionLib?.LayoutGroup || passthroughComponent;
+const motion = framerMotionLib?.motion || motionFallback;
 
 const PANEL_ORDER = ["purpose", "data", "technology", "process", "personnel"];
 
